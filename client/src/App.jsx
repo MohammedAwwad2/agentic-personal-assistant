@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Header from "./Components/Header";
-import Upload from "./Components/upload";
+import Upload from "./Components/Upload";
 import ChatPanel from "./Components/ChatPanel";
-import send from "./apis/sendmessage";
+import { getquestion, send } from "./apis/sendmessage";
 
 
 function App() {
@@ -43,7 +43,27 @@ function App() {
     }
   };
 
+    const askquestion = async() =>{
+    const trimmed = input.trim();
 
+    setLoading(true);
+    try {
+      const response = await getquestion(trimmed);
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data?.error || "Chat request failed");
+      }
+
+      setMessages((prev) => [...prev, { role: "ai", text: data.answer }]);
+    } catch (err) {
+      setMessages((prev) => [...prev, { role: "ai", text: err?.message ?? "Chat request failed" }]);
+    } finally {
+      setLoading(false);
+    }
+
+    };
 
   const onComposerKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -62,6 +82,7 @@ function App() {
           loading={loading}
           input={input}
           setInput={setInput}
+          askquestion={askquestion}
           sendMessage={sendMessage}
           onComposerKeyDown={onComposerKeyDown}
           endOfMessagesRef={endOfMessagesRef}

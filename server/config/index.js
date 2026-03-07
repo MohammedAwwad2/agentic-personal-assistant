@@ -2,11 +2,11 @@ import "dotenv/config";
 
 export const config = {
   server: {
-    port: process.env.PORT || 3001,
+    port: process.env.PORT || 3000,
   },
-  openai: {
-    apiKey: process.env.OPENAI_API_KEY,
-    model: "gpt-4o",
+  gemenai: {
+    apiKey: process.env.GEMENI_API_KEY,
+    model: "gemini-2.5-flash",
     temperature: 0,
   },
   pinecone: {

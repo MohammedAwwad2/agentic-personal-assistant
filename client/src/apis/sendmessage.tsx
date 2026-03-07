@@ -1,10 +1,22 @@
-const send = async (trimmed :string)  =>{
-    const res=await fetch("http://localhost:3001/api/chat", {
+const API_URL = window._env_.VITE_API_URL;
+
+const send = async (trimmed: string, sessionId: string = "123") => {
+    const res = await fetch(`${API_URL}/api/cha/ask`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed }),
-      });
+        body: JSON.stringify({ message: trimmed, sessionId }),
+    });
 
-      return res
-}
-export  default send
+    return res;
+};
+
+const getquestion = async (sessionId: string = "123") => {
+    const res = await fetch(`${API_URL}/api/chat/get_questions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId }),
+    });
+
+    return res;
+};
+export { send, getquestion };

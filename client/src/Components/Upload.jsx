@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Upload({
   onUploadSuccess,
-  apiEndpoint = "http://localhost:3001/api/ingest",
+  apiEndpoint = "http://localhost:3000/api/ingest",
   acceptTypes = "application/pdf,.pdf",
   buttonText = "Upload",
   uploadingText = "Uploading...",

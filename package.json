@@ -3,13 +3,24 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "concurrently -n server,client -c red,cyan \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "dev":  "npm --prefix server run dev"  ,  
     "dev:server": "npm --prefix server run dev",
     "dev:client": "npm --prefix client run dev",
+    "deploy:stop-container": "docker stop test-server || true",
+    "deploy:remove-container": "docker container rm test-server || true",
+    "deploy:start-container": "docker run --name test-server -d -p 3000:3000 test-server",
+    "deploy:docker-build": "docker build . -t test-server",
+    "deploy": "npm run deploy:docker-build && npm run deploy:stop-container && npm run deploy:remove-container && npm run deploy:start-container"
+,
     "lint": "npm --prefix server run lint:fix && npm --prefix client run lint:fix && npm --prefix server run format && npm --prefix client run format",
     "install:all": "npm install && npm --prefix server install --legacy-peer-deps && npm --prefix client install --legacy-peer-deps"
   },
   "devDependencies": {
     "concurrently": "^9.2.0"
+  },
+  "dependencies": {
+    "@langchain/core": "^1.1.31",
+    "@langchain/google-genai": "^2.1.24",
+    "dotenv": "^17.3.1"
   }
 }

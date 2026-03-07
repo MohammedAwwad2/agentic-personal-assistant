@@ -6,7 +6,7 @@ import { createUploadMiddleware } from "../middleware/upload.js";
 const router = express.Router();
 const upload = createUploadMiddleware();
 
-router.post("/chat", ChatController.handleChat);
+router.post("/chat/ask", ChatController.handleChat);
 router.post("/ingest", upload.single("file"), IngestionController.handleIngestion);
-
+router.post("/chat/get_questions", ChatController.get_questions);
 export { router };

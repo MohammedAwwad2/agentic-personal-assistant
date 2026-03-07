@@ -1,4 +1,4 @@
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai"
 import { createAgent } from "langchain";
 import { MemorySaver } from "@langchain/langgraph-checkpoint";
 import { createSearchTool } from "../utils/tools.js";
@@ -14,8 +14,8 @@ export class AgentService {
   async getAgent() {
     if (this.agent) return this.agent;
 
-    const { model, temperature } = config.openai;
-    const modelInstance = new ChatOpenAI({
+    const { model, temperature } = config.gemenai;
+    const modelInstance = new ChatGoogleGenerativeAI({
       model,
       temperature,
     });

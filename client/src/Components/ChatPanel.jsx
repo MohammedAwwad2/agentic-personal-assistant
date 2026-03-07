@@ -8,6 +8,7 @@ const ChatPanel = ({
   input,
   setInput,
   sendMessage,
+  askquestion,
   onComposerKeyDown,
   endOfMessagesRef,
   messageListProps = {},
@@ -25,7 +26,8 @@ const ChatPanel = ({
       <Composer
         input={input}
         setInput={setInput}
-        sendMessage={sendMessage}
+        func1={sendMessage}
+        func2={askquestion}
         loading={loading}
         onComposerKeyDown={onComposerKeyDown}
         {...composerProps}

@@ -3,15 +3,17 @@ import React from "react";
 const Composer = ({
   input,
   setInput,
-  sendMessage,
+  func1,
+  func2,
   loading,
   onComposerKeyDown,
   placeholder = "Message your assistant…",
-  buttonText = "Send",
+  buttonText1 = "Send",
+  buttonText2 = "ask questions",
   hintText = "Enter to send · Shift+Enter for a new line",
   disabledCondition = (input, loading) => loading || !input.trim(),
   inputType = "textarea",
-  rows = 1
+  rows = 1,
 }) => {
   const isDisabled = disabledCondition(input, loading);
 
@@ -37,12 +39,11 @@ const Composer = ({
             placeholder={placeholder}
           />
         )}
-        <button
-          className="sendButton"
-          onClick={sendMessage}
-          disabled={isDisabled}
-        >
-          {buttonText}
+        <button className="Button" onClick={func1} disabled={isDisabled}>
+          {buttonText1}
+        </button>
+        <button className="Button" onClick={func2}>
+          {buttonText2}
         </button>
       </div>
       <div className="composerHint">{hintText}</div>
