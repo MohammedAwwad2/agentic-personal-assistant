@@ -6,10 +6,6 @@
     "dev":  "npm --prefix server run dev"  ,  
     "dev:server": "npm --prefix server run dev",
     "dev:client": "npm --prefix client run dev",
-    "deploy:stop-container": "docker stop test-server || true",
-    "deploy:remove-container": "docker container rm test-server || true",
-    "deploy:start-container": "docker run --name test-server -d -p 3000:3000 test-server",
-    "deploy:docker-build": "docker build . -t test-server",
     "deploy": "npm run deploy:docker-build && npm run deploy:stop-container && npm run deploy:remove-container && npm run deploy:start-container"
 ,
     "lint": "npm --prefix server run lint:fix && npm --prefix client run lint:fix && npm --prefix server run format && npm --prefix client run format",

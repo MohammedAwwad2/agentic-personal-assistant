@@ -11,10 +11,6 @@
     "format": "prettier --write \"src/**/*.{js,jsx,json,css}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,json,css}\"",
     "preview": "vite preview",
-    "deploy:stop-container": "docker stop test-server || true",
-    "deploy:remove-container": "docker container rm test-server || true",
-    "deploy:start-container": "docker run --name test-server -d -p 3000:3000 test-server",
-    "deploy:docker-build": "docker build . -t test-server",
     "deploy": "npm run deploy:docker-build && npm run deploy:stop-container && npm run deploy:remove-container && npm run deploy:start-container"
 
   },
