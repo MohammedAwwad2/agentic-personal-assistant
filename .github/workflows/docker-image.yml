@@ -17,9 +17,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build & push backend
         run: |
-          docker build -t test/backend:latest ./server
-          docker push test/backend:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/backend:latest ./server
+          docker push ${{ secrets.DOCKER_USERNAME }}/backend:latest
       - name: Build & push frontend
         run: |
-          docker build -t test/frontend:latest ./client
-          docker push test/frontend:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest ./client
+          docker push ${{ secrets.DOCKER_USERNAME }}/frontend:latest
